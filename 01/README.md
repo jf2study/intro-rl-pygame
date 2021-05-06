@@ -48,5 +48,5 @@ Prepare a 3-5 minute lightning talk that covers three potential topics, includin
 
 - [How to Find the Data You Need](http://flowingdata.com/2009/10/01/30-resources-to-find-the-data-you-need/)
 - [16 Ways to Prepare for a Lightning Talk](https://www.semrush.com/blog/16-ways-to-prepare-for-a-lightning-talk/)
-- [Capstone Checkin 1 deck](./capstone-checkin-1.pdf)
+- [Capstone Checkin 1 deck](./capstone-checkin-1.pdf) presents *one* way to think about this lightning talk; it is not the only one. 
 ## [Google Datasets Search Tool](https://toolbox.google.com/datasetsearch)
