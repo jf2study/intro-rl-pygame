@@ -59,7 +59,8 @@ You should already have the analytical work complete, so now it's time to clean 
 ### Example Projects
 
 Below are some great capstone projects submitted by past DSI students!
-
+* [Heather Johansen](https://github.com/heatherjogo/Cake_Pricing_Tool), who has a small baking business she runs on the side, estimates the price of a cake from an image of a cake
+* [Jesse Tao](https://github.com/jesseptao/spotify-recommender) built his own spotify recommender system
 * [Kenya Chauche, DSI-10](https://github.com/KenyaChauche/sonnet-generation) built a natural language generation program trained on Shakespeare's sonnets
 * [Molly Baird, DSI-11](https://github.com/mollycbaird/ComputerVisionSET) wanted to computerize the game of SET, and succeeded admirably
 * [Daniel Johnston, DSI-2](https://github.com/djkjohnston/ML_from_scratch_GA_DSI_Capstone) built several key machine learning algos from scratch in python, comparing their performance to the scikit-learn implementations.  
