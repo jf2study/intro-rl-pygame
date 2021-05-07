@@ -4,6 +4,8 @@
 
 In this section, you will be presenting three potential topics to your coursemates (and fellow well-wishers!) You will be presenting your findings in the form of an informal [lightning talk](https://en.wikipedia.org/wiki/Lightning_talk). 
 
+Please note that the deck in this repo is from an old cohort and is presented **as a guideline**, one of several ways to think about this lightning talk, but not the only way to think about it. Actual deadlines are in `course-info`.
+
 **You are expected to prepare slides for this lightning talk.**
 
 ## How to select a topic
@@ -49,4 +51,5 @@ Prepare a 3-5 minute lightning talk that covers three potential topics, includin
 - [How to Find the Data You Need](http://flowingdata.com/2009/10/01/30-resources-to-find-the-data-you-need/)
 - [16 Ways to Prepare for a Lightning Talk](https://www.semrush.com/blog/16-ways-to-prepare-for-a-lightning-talk/)
 - [Capstone Checkin 1 deck](./capstone-checkin-1.pdf) presents *one* way to think about this lightning talk; it is not the only one. 
+
 ## [Google Datasets Search Tool](https://toolbox.google.com/datasetsearch)
