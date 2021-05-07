@@ -6,7 +6,7 @@ In this section, you will be presenting three potential topics to your coursemat
 
 Please note that the deck in this repo is from an old cohort and is presented **as a guideline**, one of several ways to think about this lightning talk, but not the only way to think about it. Actual deadlines are in `course-info`.
 
-**You are expected to prepare slides for this lightning talk.**
+**You are encouraged but not required to prepare slides for this talk.**
 
 ## How to select a topic
 
@@ -29,8 +29,6 @@ For our purposes, a lightning talk is a talk lasting **no more than five minutes
 6. Is this a reasonable project given the time constraints that you have?
 
 Time limits will be strictly enforced.
-
-> Note that you *should* prepare slides for your talk!
 
 ## Recommendations for your lightning talk
 
