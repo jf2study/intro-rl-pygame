@@ -59,6 +59,8 @@ You should already have the analytical work complete, so now it's time to clean 
 ### Example Projects
 
 Below are some great capstone projects submitted by past DSI students!
+* [Brian Kane's Capstone](https://github.com/BrianLKane/capstone)
+* [A fruit and vegetable classifier](https://github.com/irinhwng/Image-Classification-of-Fruits-and-Vegetables)
 * [Heather Johansen](https://github.com/heatherjogo/Cake_Pricing_Tool), who has a small baking business she runs on the side, estimates the price of a cake from an image of a cake
 * [Jesse Tao](https://github.com/jesseptao/spotify-recommender) built his own spotify recommender system
 * [Kenya Chauche, DSI-10](https://github.com/KenyaChauche/sonnet-generation) built a natural language generation program trained on Shakespeare's sonnets
@@ -74,3 +76,5 @@ Below are some great capstone projects submitted by past DSI students!
 * [Veronica Giannotta, DSI-06](https://github.com/vgiannotta/Emotional-Impacts-of-Viral-Content) delved into the dark side of the internet and evaluated the emotional sentiment of social media content that goes viral.
 * [Derek Steffan, DSI-07](https://github.com/dsteffan/twitch_chat_analysis) automates the process of creating twitch highlight reels using sentiment analysis, markov chains, and Bayesian analysis.  
 * [Sebastian Alvis, League of Legends](https://github.com/salvis2/SpringboardAlvis/tree/master/capstone_project_1) Not a GA capstone, but a very compelling case for applying data science to your interests to come up with a good capstone.
+* [Non-repo capstone projects](https://gallery.generalassemb.ly/DSI?metro=)
+
