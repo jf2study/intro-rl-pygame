@@ -30,7 +30,7 @@ For Part 2, provide a clear statement of the problem that you have chosen and an
 - **Goal**: Gather your data and describe your proposed approach to your local instructor.
 - **Due**: See `course-info`
 
-### **[Capstone, Part 3: Progress Report + Preliminary Findings](./03/)**
+### **[Capstone, Part 3: Progress Report + Preliminary Findings](./check-in-3)**
 
 In Part 3, you'll create a progress report of your work in order to get feedback along the way. Describe your approach, initial EDA, initial results, and any setbacks or lessons learned so far. Your report should include updated visual and statistical analysis of your data. You’ll also meet with your local instructional team to get feedback on your results so far!
 
