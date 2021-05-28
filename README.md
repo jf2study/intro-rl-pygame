@@ -37,7 +37,7 @@ In Part 3, you'll create a progress report of your work in order to get feedback
 - **Goal**: Discuss progress and setbacks, include visual and statistical analysis, review with instructor.
 - **Due**: See `course-info`
 
-### **[Capstone, Part 4: Report Writeup + Technical Analysis](./04/)**
+### **[Capstone, Part 4: Report Writeup + Technical Analysis](./check-in-4/)**
 
 By now, you're ready to apply your modeling skills to make machine learning predictions. Your goal for Part 4 is to develop a technical document (in the form of Jupyter notebook) that can be shared among your peers.
 
@@ -46,7 +46,7 @@ Document your research and analysis including a summary, an explanation of your 
 - **Goal**: Detailed report and code with a summary of your statistical analysis, model, and evaluation metrics.
 - **Due**: See `course-info`
 
-### **[Capstone, Part 5: Presentation + Recommendations](./05/)**
+### **[Capstone, Part 5: Presentation + Recommendations](./check-in-5/)**
 
 Whether during an interview or as part of a job, you will frequently have to present your findings to business partners and other interested parties - many of whom won't know anything about data science! That's why for Part 5, you'll create a presentation of your previous findings with a non-technical audience in mind.
 
