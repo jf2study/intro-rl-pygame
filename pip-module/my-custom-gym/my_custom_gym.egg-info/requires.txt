@@ -1,0 +1,6 @@
+gym
+numpy
+opencv-python
+datetime
+pillow
+pygame
