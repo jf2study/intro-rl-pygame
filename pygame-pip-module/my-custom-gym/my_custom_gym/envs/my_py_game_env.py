@@ -17,9 +17,12 @@ class Player(pygame.sprite.Sprite):
     Spawn a player
     """
 
-    def __init__(self):
+    def __init__(self, init_x = None):
         pygame.sprite.Sprite.__init__(self)
+
         self.movex = np.random.choice(np.arange(40,900))
+        if not init_x:
+            self.movex = init_x
         self.movey = 0
         self.frame = 0
         self.health = 10
@@ -145,7 +148,7 @@ class Level():
 
 class MyPyGameEnv(gym.Env):
 
-    def __init__(self):
+    def __init__(self, random_num_generator = None):
         self.done = False
 
         # https://github.com/nicknochnack/OpenAI-Reinforcement-Learning-with-Custom-Environment/blob/main/OpenAI Custom Environment Reinforcement Learning.ipynb
@@ -163,11 +166,15 @@ class MyPyGameEnv(gym.Env):
         self.ALPHA = (0, 255, 0)
         self.world = pygame.display.set_mode([self.worldx, self.worldy])
         self.counter = 0
+        if not random_num_generator:
+            self.random_num_generator = np.random.default_rng(2020)
+        else:
+            self.random_num_generator = random_num_generator
 
 
         self.view = pygame.surfarray.array3d(self.world)
 
-        self.player = Player()
+        self.player = Player(self.random_num_generator.choice(np.arange(40,900)))
         self.player_list = pygame.sprite.Group()
         self._episode_ended = False
 
@@ -177,21 +184,22 @@ class MyPyGameEnv(gym.Env):
 
         self.backdrop = pygame.image.load('stage.jpg')
         self.clock = pygame.time.Clock()
-        self.timer_event = pygame.USEREVENT + 1
+
 
         self.backdropbox = self.world.get_rect()
 
-        self.eloc = [np.random.choice(np.arange(100, 900)), 0]
+        self.eloc = [self.random_num_generator.choice(np.arange(100, 900)), 0]
         self.ep_return = 10
 
         pygame.init()
-        self.TIME_LIMIT = 10
+        self.timer_event = pygame.USEREVENT + 1
+        self.TIME_LIMIT = 5
         self.start_ticks = pygame.time.get_ticks()
         pygame.time.set_timer(self.timer_event, 1000)
         self.main = True
         # Define a 2-D observation space
-        # Define an action space ranging from 0 to 4
-        self._action_space = spaces.Discrete(3, )
+        # Define an action space ranging from 0 to 2
+        self._action_space = spaces.Discrete(2, )
 
         # OPEN AI
 
@@ -220,17 +228,15 @@ class MyPyGameEnv(gym.Env):
                            (80 - text.get_width() // 2, 120 - text.get_height() // 2))
 
         self.world.blit(self.backdrop, self.backdropbox)
-        new_reward = 0
 
         self.player_list.draw(self.world)
         self.enemy_list.draw(self.world)
         for e in self.enemy_list:
             e.move()
         pygame.display.flip()
-        new_reward = self.player.update()
-        return new_reward
-        ###################################
-        # Init the canvas
+        distance_reward = self.player.update()
+        return distance_reward
+
 
     def action_spec(self):
         return self._action_spec
@@ -247,14 +253,13 @@ class MyPyGameEnv(gym.Env):
         if self.counter % 100 == 0:
             print(f'time {self.start_ticks}')
 
-        self.eloc = []
-        self.eloc = [300, 0]
+        self.eloc = [self.random_num_generator.choice(np.arange(300,900), 0]
         # Initialize the elements
         self.enemy_list = Level.bad(1, self.eloc)
 
         # Reset the reward
         self.ep_return = 10
-        self.player = Player()  # spawn player
+        self.player = Player(self.random_num_generator.choice(np.arange(40,900)))  # spawn player
         self.player.rect.x = 0  # go to x
         self.player.rect.y = 30  # go to y
         self.player_list = pygame.sprite.Group()
@@ -299,7 +304,8 @@ class MyPyGameEnv(gym.Env):
         # Reward for executing a step.
         reward = 0
 
-        # apply the action to the chopper
+        # apply this action if you want the agent to have the option for no action
+        # Note that this was taken out, because DQN would then ignore rewards and not move at all
         if action == -1:
             self.player.control(0, 0)
 
