@@ -146,30 +146,52 @@ In most cases, the ranges are lower for the "after" case and most likely reflect
 ##### PPO
 
 **Before**
+
 ![Before PPO Averages](assets/before_train_ppo_eval.png)
+
 **After**
+
 ![After PPO Averages](assets/after_train_ppo_eval.png)
+
 ##### A2C
+
 **Before**
+
 ![Before A2C Averages](assets/before_train_a2c_eval.png)
+
 **After**
+
 ![After A2C Averages](assets/before_train_a2c_eval.png)
+
 ##### DQN Without Image Input
+
 **Before**
+
 ![Before DQN Without Images Averages](assets/before_discrete_dqn_eval.png)
+
 **After**
+
 ![After DQN Without Images Averages](assets/after_discrete_dqn_eval.png)
+
 ##### DQN With CNN
+
 **Before**
+
 ![Before CNN DQN Averages](assets/before_cnn_dqn_eval.png)
+
 **After**
+
 ![After CQN DQN Averages](assets/after_cnn_dqn_eval.png)
 
 #### Average Scores During **DQN** Training
 This shows the model progress during training in average scores at each evaluation point
+
 ##### DQN Without Images
+
 ![DQN Without Image](assets/chart-avg-discrete-dqn.png)
+
 ##### DQN with CNN
+
 ![DQN Without Image](assets/chart-avg-cnn-dqn.png)
 
 ### Animations
