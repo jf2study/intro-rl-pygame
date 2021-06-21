@@ -1,7 +1,5 @@
 # Introduction to Reinforcement Learning Using Custom PyGame
 
-[[_TOC_]]
-
 ## Caveat Emptor: Known Issues
 
 Before proceeding further, this topic has been raised first to ensure that anyone trying to run these notebooks, will be **adequately forewarned**.
