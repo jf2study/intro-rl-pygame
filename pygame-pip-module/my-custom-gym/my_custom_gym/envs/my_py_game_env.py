@@ -12,12 +12,13 @@ import PIL.Image as Image
 import gym
 from gym import Env, spaces
 
+# Code heavily relies on tutorials from https://opensource.com/article/17/10/python-101
 class Player(pygame.sprite.Sprite):
     """
     Spawn a player
     """
 
-    def __init__(self, init_x = None):
+    def __init__(self, init_x = None, image_dir = 'pygame_images'):
         pygame.sprite.Sprite.__init__(self)
 
         self.movex = np.random.choice(np.arange(40,900))
@@ -33,7 +34,8 @@ class Player(pygame.sprite.Sprite):
 
         for i in range(1, 5):
 
-            img = pygame.image.load('hero' + str(i) + '.png').convert()
+            path = f'{image_dir}/hero{str(i)}.png'
+            img = pygame.image.load(path).convert()
             img.convert_alpha()
             img.set_colorkey(self.ALPHA)
             self.images.append(img)
@@ -106,6 +108,7 @@ class Enemy(pygame.sprite.Sprite):
     """
 
     def __init__(self, x, y, img):
+
         pygame.sprite.Sprite.__init__(self)
 
         self.image = pygame.image.load(img)
@@ -135,9 +138,10 @@ class Enemy(pygame.sprite.Sprite):
 
 
 class Level():
-    def bad(lvl, eloc):
+    def bad(lvl, eloc, image_dir = 'pygame_images'):
         if lvl == 1:
-            enemy = Enemy(eloc[0], eloc[1], 'enemy.png')
+            enemy_path = f'{image_dir}/enemy.png'
+            enemy = Enemy(eloc[0], eloc[1], enemy_path)
             enemy_list = pygame.sprite.Group()
             enemy_list.add(enemy)
         if lvl == 2:
@@ -146,16 +150,15 @@ class Level():
         return enemy_list
 
 
-class MyPyGameEnv(gym.Env):
+class CustomPyGameEnv(gym.Env):
 
-    def __init__(self, random_num_generator = None):
+    def __init__(self, random_num_generator = None, image_dir = 'pygame_images'):
         self.done = False
-
         # https://github.com/nicknochnack/OpenAI-Reinforcement-Learning-with-Custom-Environment/blob/main/OpenAI Custom Environment Reinforcement Learning.ipynb
         # https://www.youtube.com/watch?v=bD6V3rcr_54
 
         ######################################
-
+        self.image_dir = image_dir
         self.waiting = False
         self.timer_event = pygame.USEREVENT + 1
         self.num_envs = 1
@@ -174,15 +177,15 @@ class MyPyGameEnv(gym.Env):
 
         self.view = pygame.surfarray.array3d(self.world)
 
-        self.player = Player(self.random_num_generator.choice(np.arange(40,900)))
+        self.player = Player(self.random_num_generator.choice(np.arange(40,900)), image_dir=self.image_dir)
         self.player_list = pygame.sprite.Group()
         self._episode_ended = False
 
         self._state = 0
 
         self.player.ALPHA = self.ALPHA
-
-        self.backdrop = pygame.image.load('stage.jpg')
+        path = f'{self.image_dir}/stage.jpg'
+        self.backdrop = pygame.image.load(path)
         self.clock = pygame.time.Clock()
 
 
@@ -207,7 +210,7 @@ class MyPyGameEnv(gym.Env):
 
         self.action_space = self._action_space
 
-        self.enemy_list = Level.bad(1, self.eloc)
+        self.enemy_list = Level.bad(1, self.eloc, self.image_dir)
         self.player.enemy_list = self.enemy_list
         self._current_time_step = self.step(0)
 
@@ -237,7 +240,7 @@ class MyPyGameEnv(gym.Env):
         distance_reward = self.player.update()
         return distance_reward
 
-
+    # The specs are for the RL environment
     def action_spec(self):
         return self._action_spec
 
@@ -245,6 +248,10 @@ class MyPyGameEnv(gym.Env):
         return self._observation_spec
 
     def reset(self):
+        """
+        Reset the environment for the next run
+
+        """
 
         self.counter += 1
         self.done = False
@@ -253,13 +260,14 @@ class MyPyGameEnv(gym.Env):
         if self.counter % 100 == 0:
             print(f'time {self.start_ticks}')
 
-        self.eloc = [self.random_num_generator.choice(np.arange(300,900), 0]
+        self.eloc = [self.random_num_generator.choice(np.arange(300,900)), 0]
         # Initialize the elements
-        self.enemy_list = Level.bad(1, self.eloc)
+        # Intialise the elements
+        self.enemy_list = Level.bad(1, self.eloc, self.image_dir )
 
         # Reset the reward
         self.ep_return = 10
-        self.player = Player(self.random_num_generator.choice(np.arange(40,900)))  # spawn player
+        self.player = Player(self.random_num_generator.choice(np.arange(40,900)), image_dir = self.image_dir)  # spawn player
         self.player.rect.x = 0  # go to x
         self.player.rect.y = 30  # go to y
         self.player_list = pygame.sprite.Group()
@@ -309,31 +317,28 @@ class MyPyGameEnv(gym.Env):
         if action == -1:
             self.player.control(0, 0)
 
-        elif action == 0:
+        elif action == 0:    # Go left
             if self.player.rect.x > 40:
                 self.player.control(-1, 0)
                 reward = 10
 
-        elif action == 1:
+        elif action == 1:  # Go Right
             if self.player.rect.x < 900:
                 self.player.control(1, 0)
                 reward = 10
             else:
                 self.player.control(0, 0)
 
-        # self._current_time_step = self.step(action)
+        # Imposing time limit on game
         seconds = (pygame.time.get_ticks() - self.start_ticks) / 1000
         if seconds >= self.TIME_LIMIT:
             self.done = True
-        # if self.fuel_left == 0:
-        #    done = True
 
         # Draw elements on the canvas
         reward += self.draw_elements_on_canvas()
         self.player.health += reward
         self._state = self.player.health
         self.ep_return += reward
-        # print("New reward ",reward)
         pygame.display.flip()
         self.view = pygame.surfarray.array3d(self.world)
 
