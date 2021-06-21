@@ -1,80 +1,204 @@
-# Capstone Project
+# Introduction to Reinforcement Learning Using Custom PyGame
 
-Your Capstone project is the culmination of your time at GA. You will be tasked with developing an interesting question, collecting the data required to model that data, developing the strongest model (or models) for prediction, and communicating those findings to other data scientists and non-technical individuals. This introductory document lays out the five consitutent portions of the project and their due dates.
+[[_TOC_]]
 
-Not sure where to start? Need some inspiration? Check out some past student capstone projects at the bottom of this README: [CLICK HERE](#example-projects)
+## Caveat Emptor: Known Issues
 
-## Your Deliverables
+Before proceeding further, this topic has been raised first to ensure that anyone trying to run these notebooks, will be **adequately forewarned**.
 
-- A well-made predictive model using either structured or unstructured machine learning techniques (or other technique approved in advanced by the global instructors), as well as clean, well-written code.
-- A technical report aimed at fellow data scientists that explains your process and findings
-- A public presentation of your findings aimed at laypeople.
+There are known file system issues with running the PyGame PIP modules and the notebook PyGame using the Google Colab notebook.
 
-### **[Capstone, Part 1: Topic Proposals](./01/)**
+For more information, please see [Special Instructions](#special-instructions)
 
-In Part 1, get started by choosing **three potential topics and problems**, describing your goals & criteria for success, potential audience(s), and identifying 1-2 potential datasets. In the field of data science, good projects are practical. Your capstone project should be manageable and affect a real world audience. This might be a domain you are familiar with, a particular interest you have, something that affects a community you are involved in, or an area that relates to a field you wish to work in.
+## Summary
 
-One of the best ways to test ideas quickly is to share them with others. A good data scientist has to be comfortable discussing ideas and presenting to audiences. That's why for Part 1 of your Capstone project, you'll be preparing a lightning talk in addition to your initial notebook outlining the scope of your project.  You will present your candidate topics in a slide deck, and should be prepared to answer questions and defend your data selection(s). Presentations should take no more than 3-5 minutes.
+This project provides proof-of-concept application of Reinforcement Learning models on a custom PyGame.
+The model uses the data from the game state and rewards to decide on actions
 
-**The ultimate choice of topic for your capstone project is yours!** However, this is research and development work. Sometimes projects that look easy can be difficult and vice versa. It never hurts to have a second (or third) option available.
+This proof-of-concept shows that the models tried to adapt their decisions to the reward system
+* Models shows more decisive movement within the context of the game
+* Model average scores tended to be lower which appears to be tied to going after higher/riskier rewards
+* More tuning improvements can be done
 
-- **Goal**: Prepare a 3-5 minute lightning talk that covers three potential topics, including potential sources of data, goals, metrics and audience.
-- **Due**: See `course-info`
+**Recommendation**: Move to Phase II and apply models to more complex simulations/games or tools.
 
-### **[Capstone, Part 2: Problem Statement + Data](./02/)**
 
-For Part 2, provide a clear statement of the problem that you have chosen and an overview of your approach to solving that problem. Summarize your objectives, goals & success metrics, and any risks & assumptions. Outline your proposed methods and models. **Your data should be in hand by this point in the process!**
+## Goal: Proof Of Concept Application of Reinforcement Learning
 
-**Again, your data should be in hand by this point the process!**
+#### Original problem: 
 
-- **Goal**: Gather your data and describe your proposed approach to your local instructor.
-- **Due**: See `course-info`
+* Create a simulation game where actors within the game/simulation would learn adaptive behaviors from experience and improve performance.  
 
-### **[Capstone, Part 3: Progress Report + Preliminary Findings](./check-in-3)**
+#### Reset to more realistic expectations: 
 
-In Part 3, you'll create a progress report of your work in order to get feedback along the way. Describe your approach, initial EDA, initial results, and any setbacks or lessons learned so far. Your report should include updated visual and statistical analysis of your data. You’ll also meet with your local instructional team to get feedback on your results so far!
+* Do a proof-of-concept to see if a few widely available reinforcement learning models can be applied to a simple game.
 
-- **Goal**: Discuss progress and setbacks, include visual and statistical analysis, review with instructor.
-- **Due**: See `course-info`
+#### Realistic Phase I
+* Develop a simple PyGame application 
+* Identify and apply a few of the widely available Reinforcement Learning models that can be trained to figure out how to play the game
+* Understand basic reinforcement learning concepts
+* Evaluate if the model can improve behavior with minimal intervention from humans
 
-### **[Capstone, Part 4: Report Writeup + Technical Analysis](./check-in-4/)**
+## Data: The Pygame Itself
 
-By now, you're ready to apply your modeling skills to make machine learning predictions. Your goal for Part 4 is to develop a technical document (in the form of Jupyter notebook) that can be shared among your peers.
+![](assets/pygame_start.png)
 
-Document your research and analysis including a summary, an explanation of your modeling approach as well as the strengths and weaknesses of any variables in the process. You should provide insight into your analysis, using best practices like cross validation or applicable prediction metrics.
 
-- **Goal**: Detailed report and code with a summary of your statistical analysis, model, and evaluation metrics.
-- **Due**: See `course-info`
+**The PyGame application is the "data" itself.**  
 
-### **[Capstone, Part 5: Presentation + Recommendations](./check-in-5/)**
+* The Reinforcement Learning model engages with the game as a player
+  * The machine inputs actions to the game
+  * The game outputs observations which will include environment state and reward information
+    * In terms of the game, this means a snapshot of the player positions at a moment and the reward for an action taken
+  * The machine inputs those observations to determine the policy: weighting the expected outcomes with desired outcome  
+    
+### Data Engineering
 
-Whether during an interview or as part of a job, you will frequently have to present your findings to business partners and other interested parties - many of whom won't know anything about data science! That's why for Part 5, you'll create a presentation of your previous findings with a non-technical audience in mind.
+A number of different scenarios were used in tuning the model.  
 
-You should already have the analytical work complete, so now it's time to clean up and clarify your findings. Come up with a detailed slide deck or interactive demo that explains your data, visualizes your model, describes your approach, articulates strengths and weaknesses, and presents specific recommendations. Be prepared to explain and defend your model to an inquisitive audience!
+#### Duration
 
-- **Goal**: Detailed presentation deck that relates your data, model, and findings to a non-technical audience.
-- **Due**: See `course-info`
+* Game times were adjusted to 5, 10, and 30 second durations for exploration
+* Increasing the time limit did not noticeably improve results
+* Final results use the 5 second game version.  
+* Testing was limited by hardware constraints (memory)
 
-<a name="example-projects"></a>
-### Example Projects
 
-Below are some great capstone projects submitted by past DSI students!
-* [Brian Kane's Capstone](https://github.com/BrianLKane/capstone)
-* [A fruit and vegetable classifier](https://github.com/irinhwng/Image-Classification-of-Fruits-and-Vegetables)
-* [Heather Johansen](https://github.com/heatherjogo/Cake_Pricing_Tool), who has a small baking business she runs on the side, estimates the price of a cake from an image of a cake
-* [Jesse Tao](https://github.com/jesseptao/spotify-recommender) built his own spotify recommender system
-* [Kenya Chauche, DSI-10](https://github.com/KenyaChauche/sonnet-generation) built a natural language generation program trained on Shakespeare's sonnets
-* [Molly Baird, DSI-11](https://github.com/mollycbaird/ComputerVisionSET) wanted to computerize the game of SET, and succeeded admirably
-* [Daniel Johnston, DSI-2](https://github.com/djkjohnston/ML_from_scratch_GA_DSI_Capstone) built several key machine learning algos from scratch in python, comparing their performance to the scikit-learn implementations.  
-* [Alex Schultz, DSI-3](https://github.com/fullquartpress/DSI-Capstone) predicts spot coffee (commodity coffee bean) price changes from sentiment analysis of an industry trade publication.  
-* [Brice Walker, DSI-3](https://github.com/bricewalker/Hey-Jetson) wanted to play with his Jetson GPU and built voice transcription _from scratch_.  
-* [Caitlin Streamer, DSI-4](https://github.com/c-streams/Pneumonia) worked on a Kaggle dataset to predict pneumonia from chest X-rays.  
-* [Brian Osgood, DSI-04](https://github.com/osgoodbl/PyFilter) built a bot that crawls twitter and identifies whether an image tagged 'lamborghini' is actually a lamborghini.  
-* [Frank Turner, DSI-04](https://github.com/frankturnerv/Fashioning_Models_from_Fashion_Models) uses image recognition to identify the colors used in a fashion season's palette.  
-* [DSI-06, team](https://github.com/balak4/Optimizing-Evac-Routes) This is actually the DSI-6 group project. It's here because it's really, really impressive.  
-* [Amy Taylor, DSI-06](https://github.com/amytaylor330/CNN_for_Dance_Music_Classification_repost) wanted to quantify the difference between types of dance music.  
-* [Veronica Giannotta, DSI-06](https://github.com/vgiannotta/Emotional-Impacts-of-Viral-Content) delved into the dark side of the internet and evaluated the emotional sentiment of social media content that goes viral.
-* [Derek Steffan, DSI-07](https://github.com/dsteffan/twitch_chat_analysis) automates the process of creating twitch highlight reels using sentiment analysis, markov chains, and Bayesian analysis.  
-* [Sebastian Alvis, League of Legends](https://github.com/salvis2/SpringboardAlvis/tree/master/capstone_project_1) Not a GA capstone, but a very compelling case for applying data science to your interests to come up with a good capstone.
-* [Non-repo capstone projects](https://gallery.generalassemb.ly/DSI?metro=)
+#### Rewards
+
+| State feature | Reward  |
+|---|----|
+| Player moves left or right within image bounds | +10 points |
+| Player moves in a region close to the "Enemy" | + 25 points |
+| Player collides with "Enemy" | -100 |
+
+#### Some Exploratory Variations
+
+* High collision penalty '-1000' points -> agent never recovered
+* No risk reward - agent would -> agent would lurk around one side of the screen avoiding "Enemy"
+* Adjust final cumulative reward
+   * Add more negative points if score < 0
+   * Add more positive points if score > 0
+   * No real difference seen
+
+
+## Reinforcement Learning Basic Concepts
+![](assets/rl_state_action_reward_cycle.jpg)
+
+The player/model gets feedback of the success of its chosen actions in the form of rewards.  In this particular case, the rewards were the points per individual action, until the end.
+
+At the end, the Kaggle tutorials suggested giving the model the cumulative reward, so the model would see if it had been successful.
+
+![](assets/rl_pygame_breakdown.jpg)
+
+This section is just intended to give people a very high level conceptual view of Reinforcement Learning
+
+## Reinforcement Learning Frameworks
+
+Before we get into the models, let's take a look at the frameworks available to us.
+
+2 popular frameworks were used for implementation:
+* [OpenAI](https://gym.openai.com/docs/) ([PPO]() and [A2C]() models)
+* [TensorFlow with TF Agents and Keras](https://www.tensorflow.org/agents) ([DQN Agent](https://www.tensorflow.org/agents/tutorials/1_dqn_tutorial))
+
+OpenAI works with both [PyTorch](https://pytorch.org/) and TensorFlow/TFAgents
+
+## Notebooks
+
+In the order they appear in the slide deck:
+
+1. [PPO RL Training](./notebooks/110_pygame_ppo.ipynb)
+2. [A2C RL Training](./notebooks/120_pygame_a2c.ipynb)
+3. [DQN Without Image Input](./notebooks/130_pygame_discrete_dqn.ipynb)
+4. [DQN With CNN Input](./notebooks/140_pygame_cnn_dqn.ipynb)
+
+## Special Instructions
+
+These notebooks are set up to run on Google Colab and need access to Google Drive
+* When using the PyGame code in the notebooks
+    * The PIP module needs to be copied to Google Drive and then untarred
+    * The pygame image dependencies are contained within the tar and will be needed by **all notebooks**
+    * **Only pip install for OpenAI models**
+    * [pip module tar file](./install_tars)
+
+## Models used
+| Environment | Model | Description |
+|---|---|---|
+| OpenAI Gym + PyTorch | PPO |Proximal Policy Optimization - Requires minimal adjustments |
+| OpenAI Gym + PyTorch | A2C | Actor Critic |
+| TF Agent (TensorFlow) | DQN with numeric state | Passes in distance and sprite position information + rewards to reduce memory footprint |
+| TF Agent (TensorFlow) | DQN + CNN input | Puts a very basic CNN layer in front of the Q Network.  Memory restrictions limited training |
+
+## Model performance
+### Metrics
+
+* Per [Kaggle Reinforcement Learning tutorials](https://www.kaggle.com/learn/intro-to-game-ai-and-reinforcement-learning), the recommended measurements are **averaged scores from a batch** (vs. single high/low scores)
+* Baseline will be the averaged scores of an agent making random choices (basically a random walk)
+* Trained model will be measured by average performance after training and video/animations of the machine's behavior to assess level of expertise
+
+### Charts
+#### Average Scores Before and After Training
+
+These charts show the model performance before and after training. 
+
+The key thing to note are the ranges in which the score averages mostly occur during the different iterations.
+
+In most cases, the ranges are lower for the "after" case and most likely reflect the models trying to accommodate the higher rewards for riskier behavior.
+
+##### PPO
+
+**Before**
+![PPO Averages](assets/before_train_ppo_eval.png)
+**After**
+![PPO Averages](assets/after_train_ppo_eval.png)
+##### A2C
+**Before**
+![PPO Averages](assets/before_train_a2c_eval.png)
+**After**
+![PPO Averages](assets/before_train_a2x_eval.png)
+##### DQN Without Image Input
+**Before**
+![PPO Averages](assets/before_discrete_dqn_eval.png)
+**After**
+![PPO Averages](assets/after_discrete_dqn_eval.png)
+##### DQN With CNN
+**Before**
+![PPO Averages](assets/before_cnn_dqn_eval.png)
+**After**
+![PPO Averages](assets/after_cnn_dqn_eval.png)
+
+#### Average Scores During **DQN** Training
+This shows the model progress during training in average scores at each evaluation point
+##### DQN Without Images
+![DQN Without Image](assets/chart-avg-discrete-dqn.png)
+##### DQN with CNN
+![DQN Without Image](assets/chart-avg-cnn-dqn.png)
+
+### Animations
+Unfortunately the DQN videos could not be embedded in the readme.  To look at the videos, click through the links below.
+#### Before Training
+![Before Example](assets/before_ppo_pygame.gif)
+#### After Training 
+##### PPO
+![PPO Animation](assets/after_ppo_pygame.gif)
+##### A2C
+![A2C Animation](assets/after_a2c_pygame.gif)
+##### DQN Without Images
+[DQN Without Images Video](https://drive.google.com/file/d/1-2nC2LWS-eCGjipWvO8RQsAUCGqL-Cep/view?usp=sharing)
+##### DQN With CNN
+[DQN With CNN Video](https://drive.google.com/file/d/1-6UeVJ2WPSkaw56LTlPlN-Rt0bXICeCx/view?usp=sharing)
+
+## Reports: Slide Deck
+[Presentation](./reports/intro_to_rl_with_pygame.pdf)
+
+## Conclusions
+
+While trained models behaved less than optimally, it is clear that the models show more decisive behavior than randomly generated actions.  Due to the limited time frame of Phase I, it's clear that tuning options can be explored as well to improve performance.
+
+GPU and Memory constraints also factored into the amount of training that could be done.
+
+Overall, the recommendation is to move on to Phase II and evaluate applying the models on more complex simulations.
+
+The long term goal is to move beyond games and applying the models to tools and more complex simulations.
+
 
