@@ -10,8 +10,8 @@ For more information, please see [Special Instructions](#special-instructions)
 
 ## Summary
 
-This project provides proof-of-concept application of Reinforcement Learning models on a custom PyGame.
-The model uses the data from the game state and rewards to decide on actions
+This project provides a proof-of-concept application of Reinforcement Learning models on a custom PyGame.
+The models use the data from the game state and rewards to decide on actions
 
 This proof-of-concept shows that the models tried to adapt their decisions to the reward system
 * Models shows more decisive movement within the context of the game
