@@ -161,7 +161,7 @@ In most cases, the ranges are lower for the "after" case and most likely reflect
 
 **After**
 
-![After A2C Averages](assets/before_train_a2c_eval.png)
+![After A2C Averages](assets/after_train_a2c_eval.png)
 
 ##### DQN Without Image Input
 
