@@ -153,7 +153,7 @@ In most cases, the ranges are lower for the "after" case and most likely reflect
 **Before**
 ![PPO Averages](assets/before_train_a2c_eval.png)
 **After**
-![PPO Averages](assets/before_train_a2x_eval.png)
+![PPO Averages](assets/before_train_a2c_eval.png)
 ##### DQN Without Image Input
 **Before**
 ![PPO Averages](assets/before_discrete_dqn_eval.png)
